@@ -1,11 +1,29 @@
 function solution(nums) {
-    var answer = -1;
-    
-    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-    console.log('Hello Javascript')
-    
-    return answer;
-}
+    nums.sort();  // nums 배열을 오름차순 정렬시킨다.
+    let sum = 0;
+    let check = 2;
+    let count = 0;
+        
+    for (let i = 0; i < nums.length; i ++){
+      for (let ii = i + 1; ii < nums.length; ii++){
+        for (let iii = ii + 1; iii < nums.length; iii++){
+          sum = nums[i] + nums[ii] + nums[iii];
+          while (check < sum){
+              if (sum % check === 0){
+                  check = 2;
+                  break;
+              }
+              check++;
+          }
+          if (sum === check){
+              count++;
+          }
+          check = 2;
+        }      
+      }
+    }
+    return count;
+    }
 // 문제 설명
 // 주어진 숫자 중 3개의 수를 더했을 때 소수가 되는 경우의 개수를 구하려고 합니다.
 // 숫자들이 들어있는 배열 nums가 매개변수로 주어질 때, nums에 있는 숫자들 중
