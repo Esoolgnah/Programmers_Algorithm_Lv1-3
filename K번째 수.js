@@ -3,12 +3,9 @@ function solution(array, commands) {
     let com = [];
     let arrSlice = [];
     for (let i = 0; i < commands.length; i++){
-        com = commands[i];
-        arrSlice = array.slice(com[0]-1,com[1]);
+        arrSlice = array.slice(commands[i][0]-1,commands[i][1]);
         arrSlice.sort();
-        if (com[2] >= 1){
-          sum.push(arrSlice[com[2]-1]);
-        }
+        sum.push(arrSlice[commands[i][2]-1]);
     }
     return sum;
 }
