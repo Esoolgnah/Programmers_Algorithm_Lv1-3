@@ -1,23 +1,15 @@
 function solution(n) {
-    let check = 2;
-    let count = 0;
-      for (let i = 2; i < n; i++){
-        for (let ii = 1; ii < i; ii++ ){
-          while(check < ii){
-            if (check % ii === 0){
-                check = 2;
-                break;
-            }
-            check++;
-          }
-          if (ii === check){
-            count++;
-          }
-          check = 2;
-        }
+  const 소수들 = new Array(n).fill(true);
+  소수들[0] = false;
+  for (let i = 2; i ** 2 <= n; i++) {
+    if (소수들[i - 1] === true) {
+      for (let j = i ** 2; j <= n; j += i) {
+        소수들[j - 1] = false;
       }
-    return count;
     }
+  }
+  return 소수들.filter((e) => e).length;
+}
 
 //     문제 설명
 // 1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하는 함수, solution을 만들어 보세요.
