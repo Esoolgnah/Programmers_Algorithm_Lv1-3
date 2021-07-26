@@ -1,17 +1,14 @@
 function solution(participant, completion) {
-    let list = {};
-    return String(participant.filter(function(el){
-      list.el = list.el + 1;
-      if (list.el === 2){
-          return el;
+    let answer = '';
+    participant.sort();
+    completion.sort();
+    for (let i = 0; i < participant.length; i++){
+      if (participant[i] !== completion[i]){
+        answer = participant[i];
+        return answer;
       }
-      if (completion.indexOf(el) < 0){
-          
-          return el;
-      }
-    
-    }));
     }
+}
 //     문제 설명
 // 수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
 
