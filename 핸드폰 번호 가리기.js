@@ -15,4 +15,4 @@ function solution(phone_number) {
 // "01033334444"	"*******4444"
 // "027778888"	"*****8888"
 // TODO: 지금 코드에 .slice 를 써서도 풀 수있다. 연구해보고 해볼것
-// TODO: .replace 정규표현식을 이용해 풀어보자. (Advanced Challenge)
+// TODO: .replace 정규표현식을 이용해 풀어보기 (Advanced Challenge)
