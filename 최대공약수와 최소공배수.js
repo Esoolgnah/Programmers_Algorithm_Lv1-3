@@ -1,21 +1,18 @@
 function solution(n, m) {
-    let maxYaksoo = 0;
-    let minBaesoo = 0;
-    let bigger = Math.max(n,m);
-    let smaller = Math.min(n,m);
-    if (bigger % smaller === 0){
-      minBaesoo = bigger;
-    }else{
-      minBaesoo = bigger * smaller;
+  let maxYaksoo = 0;
+  let bigger = Math.max(n,m);
+  let smaller = Math.min(n,m);
+  
+  for (let i = 0; i <= smaller; i++){
+    if (bigger % i === 0 && smaller % i === 0){
+      maxYaksoo = i;
     }
-    for (let i = 0; i < bigger; i++){
-      if (bigger % i === 0 && smaller % i === 0){
-        maxYaksoo = i;
-      }
-    }
-    
-    return [maxYaksoo,minBaesoo];
-}
+  }
+  let minBaesoo = (n * m) / maxYaksoo;
+  return [maxYaksoo,minBaesoo];
+  }
+  // 최소공배수 : 두 수의 곱 을 최대공약수로 나눔
+  // 최대공약수 : 둘 중 작은 수까지의 수 중에 둘다 나머지 없이 나누는 수 중 제일 큰 수 반환
 
 
 //     문제 설명
@@ -33,3 +30,4 @@ function solution(n, m) {
 
 // 입출력 예 #2
 // 자연수 2와 5의 최대공약수는 1, 최소공배수는 10이므로 [1, 10]을 리턴해야 합니다.
+//TODO: 유클리드 호제법을 검색해보고 그를 이용해 풀어보기 (Advanced Challenge)
