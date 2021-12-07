@@ -1,17 +1,14 @@
 function solution(d, budget) {
-    let result = 0, sum = 0;
-    d.sort(function (a,b){return a - b;})
-    for (let i = 0; i < d.length; i++){
-      if (sum + d[i] < budget){
-        sum += d[i];
-        result ++;
-      }else if (sum + d[i] === budget){
-        result ++;
-        break;
-      }
+  let result = 0, sum = 0;
+  d.sort(function (a,b){return a - b;})
+  for (let i = 0; i < d.length; i++){
+    if (sum + d[i] <= budget){
+      sum += d[i];
+      result ++;
     }
-    return result;
   }
+  return result;
+}
 // 문제 설명
 // S사에서는 각 부서에 필요한 물품을 지원해 주기 위해 부서별로 물품을 구매하는데 필요한 금액을 조사했습니다. 그러나, 전체 예산이 정해져 있기 때문에 모든 부서의 물품을 구매해 줄 수는 없습니다. 그래서 최대한 많은 부서의 물품을 구매해 줄 수 있도록 하려고 합니다.
 
