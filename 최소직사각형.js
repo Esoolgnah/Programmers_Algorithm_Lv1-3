@@ -1,9 +1,16 @@
 function solution(sizes) {
-    for (let i = 0; i < sizes.length; i++){
-      
+  let maxW = Number.MIN_SAFE_INTEGER, maxH = Number.MIN_SAFE_INTEGER;
+  for (let i = 0; i < sizes.length; i++){
+     const w = sizes[i][0], h = sizes[i][1];
+    if (sizes[i][0] < sizes[i][1]){ // 가로가 세로보다 작을 경우 교체
+      sizes[i][0] = h;
+      sizes[i][1] = w;
     }
+    if (sizes[i][0] > maxW) maxW = sizes[i][0]; // 가로 최대값 구하기
+    if (sizes[i][1] > maxH) maxH = sizes[i][1]; // 세로 최대값 구하기
   }
-
+  return maxW * maxH;
+}
 //   문제 설명
 // 명함 지갑을 만드는 회사에서 지갑의 크기를 정하려고 합니다. 다양한 모양과 크기의 명함들을 모두 수납할 수 있으면서, 작아서 들고 다니기 편한 지갑을 만들어야 합니다. 이러한 요건을 만족하는 지갑을 만들기 위해 디자인팀은 모든 명함의 가로 길이와 세로 길이를 조사했습니다.
 
