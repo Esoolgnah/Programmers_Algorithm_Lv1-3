@@ -1,14 +1,15 @@
 function solution(n, lost, reserve) {
-  let sum = n - lost.length;
-  for (let i = 0; i < reserve.length; i++){
-    for (let j = 0; j < lost.length; j++){
-      if (reserve[i] - 1 === lost[j] || reserve[i] === lost[j] || reserve[i] + 1 === lost[j]){
-        reserve.splice(j,1);
-        sum++;
+  const res=reserve.filter(r=>!lost.includes(r));
+  const los=lost.filter(l=>!reserve.includes(l));
+  for(let i=0;i<res.length;i+=1){
+      for(let j=0;j<los.length;j+=1){
+          if( los[j]===res[i]-1 ||los[j]===res[i]+1){
+              los[j]=-1;
+              break;
+          }
       }
-    }
   }
-  return sum;
+  return n-los.filter(l=>l!==-1).length;
 }
 
 // 문제 설명
