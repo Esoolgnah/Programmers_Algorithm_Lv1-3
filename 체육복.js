@@ -1,15 +1,14 @@
 function solution(n, lost, reserve) {
-  const res=reserve.filter(r=>!lost.includes(r));
-  const los=lost.filter(l=>!reserve.includes(l));
-  for(let i=0;i<res.length;i+=1){
-      for(let j=0;j<los.length;j+=1){
-          if( los[j]===res[i]-1 ||los[j]===res[i]+1){
-              los[j]=-1;
-              break;
-          }
-      }
-  }
-  return n-los.filter(l=>l!==-1).length;
+    let realLost = lost.filter((item) => !reserve.includes(item));
+    let realReserve = reserve.filter((item) => !lost.includes(item));
+    let answer = n - realLost.length;
+    while(realReserve.length) {
+        const r = realReserve.pop();
+        if (realLost.includes(r - 1) || realLost.includes(r + 1) || realLost.includes(r)) {
+            answer += 1;
+        }
+    }
+    return answer > n ? n : answer;
 }
 
 // 문제 설명
