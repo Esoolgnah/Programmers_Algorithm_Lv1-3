@@ -1,14 +1,49 @@
 function solution(answers) {
-    let answer123 = ['1,2,3,4,5,1,2,3,4,5','2,1,2,3,2,4,2,5,2,1,2,3,2,4,2,5','3,3,1,1,2,2,4,4,5,5,3,3,1,1,2,2,4,4,5,5'];
-    let answerStr = answers.join();
-    let sum = [];
-    for (let i = 0; i < answer123.length; i++){
-      if (answer123[i].includes(answerStr) === true){
-        sum.push(i+1);
-      }
+  let supo1 = [1,2,3,4,5],idx1 = 0, score1 = [1,0];
+  // 수포1의 정답배열, 인덱스, 수포1의 [번호,점수]
+  let supo2 = [2,1,2,3,2,4,2,5],idx2 = 0, score2 = [2,0];
+  // 수포2의 정답배열, 인덱스, 수포2의 [번호,점수]
+  let supo3 = [3,3,1,1,2,2,4,4,5,5],idx3 = 0, score3 = [3,0];
+  // 수포3의 정답배열, 인덱스, 수포3의 [번호,점수]
+  let max = Number.MIN_SAFE_INTEGER;
+  let answer = [];
+  for (let i = 0; i < answers.length; i++){
+  // 정답의 갯수만큼 반복문
+    if (answers[i] === supo1[idx1]){
+    // 수포1의 현재 답과 현재 정답이 일치하면
+      score1[1]++;
+      //수포1 점수 1증가
     }
-    return sum;
+    if (answers[i] === supo2[idx2]){
+    // 수포2의 현재 답과 현재 정답이 일치하면
+      score2[1]++;
+      //수포2 점수 1증가
+    }
+    if (answers[i] === supo3[idx3]){
+    // 수포3의 현재 답과 현재 정답이 일치하면
+      score3[1]++;
+      //수포3 점수 1증가
+    }
+    if (score1[1] >= max) max = score1[1];
+    if (score2[1] >= max) max = score2[1];
+    if (score3[1] >= max) max = score3[1];
+    // 최대점수 갱신
+    idx1++;
+    idx2++;
+    idx3++;
+    if (idx1 >= supo1.length) idx1 = 0;
+    if (idx2 >= supo2.length) idx2 = 0;
+    if (idx3 >= supo3.length) idx3 = 0;
+    // 수포자 인덱스 갱신
   }
+  if (score1[1] === max) answer.push(score1[0]);
+  if (score2[1] === max) answer.push(score2[0]);
+  if (score3[1] === max) answer.push(score3[0]);
+  // 최대점수와 일치하는 수포자 번호 answer배열에 넣음
+  answer.sort((a,b)=>{return a-b;});
+  return answer;
+  // answer 배열 오름차순 정렬 후 리턴
+}
 //   문제 설명
 // 수포자는 수학을 포기한 사람의 준말입니다. 수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다. 수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다.
 
