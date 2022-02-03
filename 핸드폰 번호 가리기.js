@@ -1,7 +1,11 @@
+// function solution(phone_number) {
+//     let sum = '';
+//     sum = '*'.repeat(phone_number.length-4) + phone_number[phone_number.length-4]  + phone_number[phone_number.length-3] + phone_number[phone_number.length-2]  + phone_number[phone_number.length-1];
+//     return sum;
+// }
 function solution(phone_number) {
-    let sum = '';
-    sum = '*'.repeat(phone_number.length-4) + phone_number[phone_number.length-4]  + phone_number[phone_number.length-3] + phone_number[phone_number.length-2]  + phone_number[phone_number.length-1];
-    return sum;
+  return '*'.repeat(phone_number.length-4) + phone_number.slice(phone_number.length-4);;
+  // replace 이용한 방법보다 3배는 빠르다고 하여 이 방법으로 수정
 }
 
 // 문제 설명
