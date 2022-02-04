@@ -1,18 +1,26 @@
-function solution(n, m) {
-  let maxYaksoo = 0;
-  let bigger = Math.max(n,m);
-  let smaller = Math.min(n,m);
+// function solution(n, m) {
+//   let maxYaksoo = 0;
+//   let bigger = Math.max(n,m);
+//   let smaller = Math.min(n,m);
   
-  for (let i = 0; i <= smaller; i++){
-    if (bigger % i === 0 && smaller % i === 0){
-      maxYaksoo = i;
-    }
-  }
-  let minBaesoo = (n * m) / maxYaksoo;
-  return [maxYaksoo,minBaesoo];
-  }
+//   for (let i = 0; i <= smaller; i++){
+//     if (bigger % i === 0 && smaller % i === 0){
+//       maxYaksoo = i;
+//     }
+//   }
+//   let minBaesoo = (n * m) / maxYaksoo;
+//   return [maxYaksoo,minBaesoo];
+//   }
   // 최소공배수 : 두 수의 곱 을 최대공약수로 나눔
   // 최대공약수 : 둘 중 작은 수까지의 수 중에 둘다 나머지 없이 나누는 수 중 제일 큰 수 반환
+function solution(n, m) {
+  let a = gcd(n,m); // 최대공약수
+  let b = n * m / gcd(n,m); // 최소공배수
+  return [a,b];
+}
+function gcd(a,b){ 
+  return b ? gcd(b, a%b) : a; 
+}
 
 
 //     문제 설명
