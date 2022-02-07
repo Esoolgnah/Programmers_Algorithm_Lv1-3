@@ -1,14 +1,24 @@
-function solution(n){
-    n = String(n);
-    let arr = [];
-    for (let i = 0; i < n.length; i++){
-      arr.push(Number(n[i]));
-    }
-    let answer = arr.reduce(function(a,b){
-        return a + b;
-        return a;
-    });
-    return answer;
+// function solution(n){
+//     n = String(n);
+//     let arr = [];
+//     for (let i = 0; i < n.length; i++){
+//       arr.push(Number(n[i]));
+//     }
+//     let answer = arr.reduce(function(a,b){
+//         return a + b;
+//         return a;
+//     });
+//     return answer;
+// }
+
+//Advanced Challenge
+function solution(n) {
+  let sum = 0;
+  while (n > 0) {
+    sum += n % 10;
+    n = Math.floor(n / 10);
+  }
+  return sum;
 }
 
 // 문제 설명
