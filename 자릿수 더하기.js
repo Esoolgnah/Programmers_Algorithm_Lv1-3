@@ -11,14 +11,19 @@
 //     return answer;
 // }
 
-//Advanced Challenge
+//Advanced Challenge - 숫자 풀이
+// function solution(n) {
+//   let sum = 0;
+//   while (n > 0) {
+//     sum += n % 10;
+//     n = Math.floor(n / 10);
+//   }
+//   return sum;
+// }
+
+//Advanced Challenge - 문자 풀이
 function solution(n) {
-  let sum = 0;
-  while (n > 0) {
-    sum += n % 10;
-    n = Math.floor(n / 10);
-  }
-  return sum;
+  return Number(String(n).split('').reduce((a, b) => {return Number(a) + Number(b);}),);
 }
 
 // 문제 설명
