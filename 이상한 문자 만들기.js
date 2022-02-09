@@ -1,22 +1,37 @@
+// function solution(s) {
+//     let sum = '';
+//     let count = 0;
+//       for (let i = 0; i < s.length; i ++){
+//           if (s[i] !== ' '){
+//             if (count % 2 === 0 || count === 0){
+//               sum += s[i].toUpperCase();
+//               count++;
+//             }else if (count % 2 !== 0){
+//               sum += s[i].toLowerCase();
+//               count++;
+//             }
+
+//           }else{
+//             sum += ' ';
+//             count = 0;
+//           }
+//       }
+//     return sum;
+// }
+
+// Advanced Challenge
 function solution(s) {
-    let sum = '';
-    let count = 0;
-      for (let i = 0; i < s.length; i ++){
-          if (s[i] !== ' '){
-            if (count % 2 === 0 || count === 0){
-              sum += s[i].toUpperCase();
-              count++;
-            }else if (count % 2 !== 0){
-              sum += s[i].toLowerCase();  
-              count++;
-            }
-    
-          }else{
-            sum += ' ';
-            count = 0;
-          }
-      }
-    return sum;
+  return s
+    .split(' ')
+    .map(words => {
+      return words
+        .split('')
+        .map((word, i) => {
+          return i % 2 === 0 ? word.toUpperCase() : word.toLowerCase();
+        })
+        .join('');
+    })
+    .join(' ');
 }
 
 // 문제 설명
@@ -30,4 +45,4 @@ function solution(s) {
 // "try hello world"	"TrY HeLlO WoRlD"
 // 입출력 예 설명
 // "try hello world"는 세 단어 "try", "hello", "world"로 구성되어 있습니다. 각 단어의 짝수번째 문자를 대문자로, 홀수번째 문자를 소문자로 바꾸면 "TrY", "HeLlO", "WoRlD"입니다. 따라서 "TrY HeLlO WoRlD" 를 리턴합니다.
-//TODO: .replace 정규표현식을 사용해 풀어보자. (Advanced Challenge)
+//TODO: .split,map,join을 이용해 풀어보자. (Advanced Challenge)
