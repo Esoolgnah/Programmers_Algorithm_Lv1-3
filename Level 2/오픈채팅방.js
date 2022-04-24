@@ -1,39 +1,18 @@
-// 원래 풀이 (시간 초과 외엔 풀이 성공)
-
+// 문제 풀이
 function solution(record) {
-  let idArr = [],
-    nickArr = [],
-    msgArr = [];
   let answer = [];
+  let nameObj = {};
   for (let i = 0; i < record.length; i++) {
-    const recordSplit = record[i].split(' ');
-    const command = recordSplit[0];
-    const id = recordSplit[1];
-    const nickName = recordSplit[2];
-
-    if (command !== 'Change') msgArr.push([command, id]);
+    const [command, id, nickName] = record[i].split(' ');
     if (command === 'Enter') {
-      if (idArr.includes(id) === false) {
-        idArr.push(id);
-        nickArr.push(nickName);
-      } else {
-        const changeIndex = idArr.indexOf(id);
-        nickArr[changeIndex] = nickName;
-      }
-    } else if (command === 'Change') {
-      const changeIndex = idArr.indexOf(id);
-      nickArr[changeIndex] = nickName;
+      answer.push([id, '님이 들어왔습니다.']);
+    } else if (command === 'Leave') {
+      answer.push([id, '님이 나갔습니다.']);
+      continue;
     }
+    nameObj[id] = nickName;
   }
-  for (let i = 0; i < msgArr.length; i++) {
-    const curNickName = nickArr[idArr.indexOf(msgArr[i][1])];
-    if (msgArr[i][0] === 'Enter') {
-      answer.push(`${curNickName}님이 들어왔습니다.`);
-    } else if (msgArr[i][0] === 'Leave') {
-      answer.push(`${curNickName}님이 나갔습니다.`);
-    }
-  }
-  return answer;
+  return answer.map((el) => nameObj[el[0]] + el[1]);
 }
 
 // 문제 설명
