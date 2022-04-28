@@ -1,23 +1,45 @@
 //문제 풀이중 (테스트 통과, 효율성 비통과)
+// function solution(stones, k) {
+//   // 징검다리 돌의 건넘 가능횟수 중 0이 연속 k번 나오면 종료!
+//   // 징검다리 돌의 건넘 가능횟수를 전체적으로 1씩 줄인다. (0이 최소)
+//   let answer = 0;
+//   let zeroCount = 0;
+//   while (true) {
+//     for (let i = 0; i < stones.length; i++) {
+//       if (stones[i] > 0) {
+//         stones[i] -= 1;
+//         zeroCount = 0;
+//       } else {
+//         zeroCount++;
+//         if (zeroCount >= k) return answer;
+//       }
+//     }
+//     answer++;
+//     zeroCount = 0;
+//   }
+// }
+
+//문제 풀이
 function solution(stones, k) {
-  // 징검다리 돌의 건넘 가능횟수 중 0이 연속 k번 나오면 종료!
-  // 징검다리 돌의 건넘 가능횟수를 전체적으로 1씩 줄인다. (0이 최소)
-  let answer = 0;
-  let zeroCount = 0;
-  while (true) {
-    for (let i = 0; i < stones.length; i++) {
-      if (stones[i] > 0) {
-        stones[i] -= 1;
-        zeroCount = 0;
-      } else {
-        zeroCount++;
-        if (zeroCount >= k) return answer;
-      }
-    }
-    answer++;
-    zeroCount = 0;
-  }
+  return BS(stones, k, 1, 200000000);
 }
+
+const BS = (list, k, min, max) => {
+  if (min === max) {
+    return min;
+  }
+  let mid = Math.round((min + max) / 2);
+  let count = 0;
+
+  for (let i = 0; i < list.length; i++) {
+    if (count === k) {
+      break;
+    }
+    let value = list[i] - (mid - 1);
+    value <= 0 ? count++ : (count = 0);
+  }
+  return count === k ? BS(list, k, min, mid - 1) : BS(list, k, mid, max);
+};
 
 // 문제 설명
 // [본 문제는 정확성과 효율성 테스트 각각 점수가 있는 문제입니다.]
