@@ -1,26 +1,48 @@
+// 이전 풀이
+// function solution(s) {
+//   let answer = [];
+//   // 배열 변환작업
+//   let sSplit = s.split('');
+//   sSplit.shift();
+//   sSplit.shift();
+//   sSplit.pop();
+//   sSplit.pop();
+//   sSplit = sSplit.join('');
+//   sSplit = sSplit.split('},').join('').split('{');
+//   sSplit = sSplit.map((el) => {
+//     return el.split(',');
+//   });
+
+//   //sort
+//   sSplit.sort((a, b) => {
+//     return a.length - b.length;
+//   });
+
+//   for (let i = 0; i < sSplit.length; i++) {
+//     for (let j = 0; j < sSplit[i].length; j++) {
+//       if (!answer.includes(Number(sSplit[i][j]))) {
+//         answer.push(Number(sSplit[i][j]));
+//       }
+//     }
+//   }
+//   return answer;
+// }
+
+//배열로 전환작업 replace와 정규표현식으로 간소화
 function solution(s) {
   let answer = [];
   // 배열 변환작업
-  let sSplit = s.split('');
-  sSplit.shift();
-  sSplit.shift();
-  sSplit.pop();
-  sSplit.pop();
-  sSplit = sSplit.join('');
-  sSplit = sSplit.split('},').join('').split('{');
-  sSplit = sSplit.map((el) => {
-    return el.split(',');
-  });
+  let newArr = JSON.parse(s.replace(/{/g, '[').replace(/}/g, ']'));
 
   //sort
-  sSplit.sort((a, b) => {
+  newArr.sort((a, b) => {
     return a.length - b.length;
   });
 
-  for (let i = 0; i < sSplit.length; i++) {
-    for (let j = 0; j < sSplit[i].length; j++) {
-      if (!answer.includes(Number(sSplit[i][j]))) {
-        answer.push(Number(sSplit[i][j]));
+  for (let i = 0; i < newArr.length; i++) {
+    for (let j = 0; j < newArr[i].length; j++) {
+      if (!answer.includes(Number(newArr[i][j]))) {
+        answer.push(Number(newArr[i][j]));
       }
     }
   }
