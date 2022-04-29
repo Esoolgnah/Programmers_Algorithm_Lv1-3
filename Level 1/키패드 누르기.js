@@ -1,4 +1,58 @@
-function solution(numbers, hand) {}
+function solution(numbers, hand) {
+  let answer = '';
+  const keypad = {
+    1: [1, 1],
+    2: [1, 2],
+    3: [1, 3],
+    4: [2, 1],
+    5: [2, 2],
+    6: [2, 3],
+    7: [3, 1],
+    8: [3, 2],
+    9: [3, 3],
+    '*': [4, 1],
+    0: [4, 2],
+    '#': [4, 3],
+  };
+
+  let leftThumb = [4, 1];
+  let rightThumb = [4, 3];
+
+  numbers.map((num) => {
+    let numLocation = keypad[num];
+    if (numLocation[1] === 1) {
+      leftThumb = numLocation;
+      answer += 'L';
+    } else if (numLocation[1] === 3) {
+      rightThumb = numLocation;
+      answer += 'R';
+    } else {
+      let distanceL = getDistance(leftThumb, numLocation);
+      let distanceR = getDistance(rightThumb, numLocation);
+      if (distanceL === distanceR) {
+        if (hand === 'left') {
+          leftThumb = numLocation;
+          answer += 'L';
+        } else {
+          rightThumb = numLocation;
+          answer += 'R';
+        }
+      } else if (distanceL < distanceR) {
+        leftThumb = numLocation;
+        answer += 'L';
+      } else {
+        rightThumb = numLocation;
+        answer += 'R';
+      }
+    }
+  });
+  return answer;
+}
+
+function getDistance(arr1, arr2) {
+  let result = Math.abs(arr1[0] - arr2[0]) + Math.abs(arr1[1] - arr2[1]);
+  return result;
+}
 
 // 문제 설명
 // 스마트폰 전화 키패드의 각 칸에 다음과 같이 숫자들이 적혀 있습니다.
