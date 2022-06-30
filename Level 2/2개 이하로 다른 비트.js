@@ -1,18 +1,23 @@
 function solution(numbers) {
   let answer = [];
-  numbers.map((num)=>{
-    let str = "0" + num.toString(2);
+  numbers.map((number) => {
+    let str = '0' + number.toString(2);
     const len = str.length;
-    if(str[len - 1] === "0"){
-      answer.push(num + 1);
-    }else{
-      for(let i = len; i >= 0; i--){
-        if(str[i] === "0"){
-          answer.push(parseInt(str.substring(0,i) + "1" + "0" + str.substring(i + 2, len),2));
+    if (str[len - 1] === '0') {
+      answer.push(number + 1);
+    } else {
+      for (let i = len; i >= 0; i--) {
+        if (str[i] === '0') {
+          answer.push(
+            parseInt(
+              str.substring(0, i) + '1' + '0' + str.substring(i + 2, len),
+              2,
+            ),
+          );
           break;
         }
       }
-   }
+    }
   });
   return answer;
 }
@@ -25,11 +30,11 @@ function solution(numbers) {
 
 // f(2) = 3 입니다. 다음 표와 같이 2보다 큰 수들 중에서 비트가 다른 지점이 2개 이하이면서 제일 작은 수가 3이기 때문입니다.
 // 수	비트	다른 비트의 개수
-// 2	000...0010	
+// 2	000...0010
 // 3	000...0011	1
 // f(7) = 11 입니다. 다음 표와 같이 7보다 큰 수들 중에서 비트가 다른 지점이 2개 이하이면서 제일 작은 수가 11이기 때문입니다.
 // 수	비트	다른 비트의 개수
-// 7	000...0111	
+// 7	000...0111
 // 8	000...1000	4
 // 9	000...1001	3
 // 10	000...1010	3
