@@ -2,10 +2,9 @@ function solution(s) {
   let answer = [];
   let arr = [];
 
+  if (s.length === 1) return [-1];
+
   const splitS = s.split('');
-  const shifted = splitS.shift();
-  answer.push(arr.indexOf(shifted));
-  arr.unshift(shifted);
 
   while (splitS.length > 0) {
     const shifted = splitS.shift();
